@@ -22,6 +22,10 @@ public class XorinalMod extends Mod {
         try { UnitHealthBars.init(); } catch (Exception e) { Log.err("[Xorinal] UnitHealthBars.init: " + e); }
         try { DamageNumbers.init(); } catch (Exception e) { Log.err("[Xorinal] DamageNumbers.init: " + e); }
         try { EnemyPathOverlay.init(); } catch (Exception e) { Log.err("[Xorinal] EnemyPathOverlay.init: " + e); }
+        try { PauseMenuExtras.init(); } catch (Exception e) { Log.err("[Xorinal] PauseMenuExtras.init: " + e); }
+        try { CoreItemDelta.init(); } catch (Exception e) { Log.err("[Xorinal] CoreItemDelta.init: " + e); }
+        try { DestroyLog.init(); } catch (Exception e) { Log.err("[Xorinal] DestroyLog.init: " + e); }
+        try { GameSpeed.init(); } catch (Exception e) { Log.err("[Xorinal] GameSpeed.init: " + e); }
         try { InfectorDrain.init(); } catch (Exception e) { Log.err("[Xorinal] InfectorDrain.init: " + e); }
         try { LichenSystem.init(); } catch (Exception e) { Log.err("[Xorinal] LichenSystem.init: " + e); }
         try { PlanetMeshes.init(); } catch (Exception e) { Log.err("[Xorinal] PlanetMeshes.init: " + e); }

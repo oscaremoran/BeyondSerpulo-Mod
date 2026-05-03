@@ -1,0 +1,86 @@
+package xorinal;
+
+import arc.Core;
+import arc.Events;
+import arc.input.KeyCode;
+import arc.scene.ui.TextField;
+import arc.scene.ui.layout.Table;
+import arc.util.Log;
+import arc.util.Strings;
+import arc.util.Time;
+import mindustry.Vars;
+import mindustry.game.EventType;
+
+public class GameSpeed {
+    private static final float[] LEVELS = {0.1f, 0.3f, 0.5f, 0.75f, 1f, 1.5f, 2f, 2.5f, 5f, 10f};
+    private static final KeyCode[] KEYS = {
+            KeyCode.num1, KeyCode.num2, KeyCode.num3, KeyCode.num4, KeyCode.num5,
+            KeyCode.num6, KeyCode.num7, KeyCode.num8, KeyCode.num9, KeyCode.num0
+    };
+
+    private static int idx = 4;
+    private static float saved;
+    private static boolean enabled = true;
+    public static boolean isEnabled() { return enabled; }
+    public static void toggle() {
+        enabled = !enabled;
+        if (!enabled) idx = 4;
+    }
+
+    public static void init() {
+        Events.run(EventType.Trigger.beforeGameUpdate, () -> {
+            saved = Time.delta;
+            if (enabled) Time.delta = saved * LEVELS[idx];
+        });
+        Events.run(EventType.Trigger.afterGameUpdate, () -> {
+            if (enabled) Time.delta = saved;
+        });
+        Events.run(EventType.Trigger.update, GameSpeed::pollKeys);
+        Core.app.post(GameSpeed::buildBar);
+    }
+
+    private static void pollKeys() {
+        if (!enabled) return;
+        if (Vars.state == null || !Vars.state.isGame()) return;
+        if (Core.scene != null && Core.scene.getKeyboardFocus() instanceof TextField) return;
+        if (Vars.ui != null && Vars.ui.chatfrag != null && Vars.ui.chatfrag.shown()) return;
+
+        for (int i = 0; i < KEYS.length; i++) {
+            if (Core.input.keyTap(KEYS[i])) {
+                idx = i;
+                if (Vars.ui != null) {
+                    Vars.ui.showInfoToast("[gold]Speed:[] " + Strings.fixed(LEVELS[idx], 2) + "x", 1.2f);
+                }
+                return;
+            }
+        }
+    }
+
+    private static void buildBar() {
+        try {
+            if (Vars.ui == null || Vars.ui.hudGroup == null) return;
+            Vars.ui.hudGroup.fill(t -> {
+                t.top();
+                t.table(panel -> {
+                    panel.update(() -> rebuild(panel));
+                }).pad(4f).padTop(60f);
+            });
+        } catch (Exception ex) {
+            Log.err("[Xorinal] GameSpeed.buildBar: " + ex);
+        }
+    }
+
+    private static void rebuild(Table panel) {
+        if (!enabled || Vars.state == null || !Vars.state.isGame()) {
+            panel.clear();
+            return;
+        }
+        panel.clear();
+        for (int i = 0; i < LEVELS.length; i++) {
+            String label = (i == idx ? "[gold]" : "[lightgray]") +
+                    Strings.fixed(LEVELS[i], LEVELS[i] >= 1f ? 1 : 2) + "x[]";
+            panel.add(label).pad(2f);
+            if (i < LEVELS.length - 1) panel.add("[gray]·[]").pad(1f);
+        }
+    }
+}

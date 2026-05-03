@@ -21,6 +21,9 @@ public class DamageNumbers {
     private static final float TEXT_SCALE = 0.26f;
 
     private static final Seq<Pop> pops = new Seq<>();
+    private static boolean enabled = true;
+    public static boolean isEnabled() { return enabled; }
+    public static void toggle() { enabled = !enabled; }
 
     static class Pop {
         float x, y, value, age, jx;
@@ -35,6 +38,7 @@ public class DamageNumbers {
 
     public static void init() {
         Events.on(EventType.UnitDamageEvent.class, e -> {
+            if (!enabled) return;
             if (e.unit == null || e.bullet == null) return;
             float dmg = e.bullet.damage;
             if (dmg <= 0f) return;
@@ -42,6 +46,7 @@ public class DamageNumbers {
         });
 
         Events.on(EventType.BuildDamageEvent.class, e -> {
+            if (!enabled) return;
             if (e.build == null || e.source == null) return;
             float dmg = e.source.damage;
             if (dmg <= 0f) return;

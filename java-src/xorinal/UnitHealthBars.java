@@ -15,6 +15,10 @@ import mindustry.gen.Groups;
 import mindustry.ui.Fonts;
 
 public class UnitHealthBars {
+    private static boolean enabled = true;
+    public static boolean isEnabled() { return enabled; }
+    public static void toggle() { enabled = !enabled; }
+
     private static final float BAR_W = 16f;
     private static final float BAR_H = 2.2f;
     private static final float TEXT_SCALE = 0.18f;
@@ -24,6 +28,7 @@ public class UnitHealthBars {
     }
 
     private static void drawAll() {
+        if (!enabled) return;
         if (Vars.state == null || !Vars.state.isGame()) return;
         if (Vars.player == null) return;
 

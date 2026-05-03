@@ -124,7 +124,7 @@ public class Codex {
     private static boolean unlocked(String id) { return Core.settings.getBool(KEY + id, false); }
     private static boolean read(String id) { return Core.settings.getBool(READ_KEY + id, false); }
 
-    private static int unreadCount() {
+    public static int unreadCount() {
         int n = 0;
         for (Entry e : entries) if (unlocked(e.id) && !read(e.id)) n++;
         return n;
@@ -202,21 +202,14 @@ public class Codex {
         dialog.hidden(Codex::markAllRead);
     }
 
+    public static void show() {
+        try { if (dialog != null) dialog.show(); } catch (Exception ex) { Log.err("[Xorinal] codex show: " + ex); }
+    }
+
     private static void setup() {
         try {
             Log.info("[Xorinal] codex setup starting");
             buildDialog();
-
-            Table hud = new Table();
-            hud.setFillParent(true);
-            hud.top().right();
-            TextButton tb = hud.button(btnText(), () -> {
-                try { dialog.show(); } catch (Exception ex) { Log.err("[Xorinal] codex show: " + ex); }
-            }).size(140f, 40f).padTop(8f).padRight(180f).get();
-            btnLabel = tb.getLabel();
-            Vars.ui.hudGroup.addChild(hud);
-            refreshBtn();
-            Log.info("[Xorinal] codex HUD button added");
 
             try {
                 var game = Vars.ui.settings.game;

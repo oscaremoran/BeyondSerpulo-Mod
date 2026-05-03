@@ -1,13 +1,9 @@
 package xorinal;
 
-import arc.Core;
 import arc.Events;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Lines;
-import arc.scene.ui.TextButton;
-import arc.scene.ui.layout.Table;
-import arc.util.Log;
 import mindustry.Vars;
 import mindustry.ai.Pathfinder;
 import mindustry.game.EventType;
@@ -22,29 +18,14 @@ import mindustry.world.blocks.units.UnitFactory;
 
 public class EnemyPathOverlay {
     private static boolean enabled;
-    private static TextButton btn;
 
     public static void init() {
-        Core.app.post(EnemyPathOverlay::buildBtn);
         Events.run(EventType.Trigger.drawOver, EnemyPathOverlay::draw);
     }
 
-    private static void buildBtn() {
-        try {
-            if (Vars.ui == null || Vars.ui.hudGroup == null) return;
-            Table hud = new Table();
-            hud.setFillParent(true);
-            hud.top().right();
-            btn = hud.button("Paths: OFF", () -> {
-                enabled = !enabled;
-                if (btn != null) btn.setText(enabled ? "[#ff5555]Paths: ON[]" : "Paths: OFF");
-            }).size(140f, 40f).padTop(8f).padRight(330f).get();
-            Vars.ui.hudGroup.addChild(hud);
-            Log.info("[Xorinal] enemy path overlay button added");
-        } catch (Exception ex) {
-            Log.err("[Xorinal] EnemyPathOverlay.buildBtn: " + ex);
-        }
-    }
+    public static boolean isEnabled() { return enabled; }
+
+    public static void toggle() { enabled = !enabled; }
 
     private static void draw() {
         if (!enabled) return;
