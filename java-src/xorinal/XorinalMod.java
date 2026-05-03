@@ -26,6 +26,7 @@ public class XorinalMod extends Mod {
         try { CoreItemDelta.init(); } catch (Exception e) { Log.err("[Xorinal] CoreItemDelta.init: " + e); }
         try { DestroyLog.init(); } catch (Exception e) { Log.err("[Xorinal] DestroyLog.init: " + e); }
         try { GameSpeed.init(); } catch (Exception e) { Log.err("[Xorinal] GameSpeed.init: " + e); }
+        try { ResourceFinder.init(); } catch (Exception e) { Log.err("[Xorinal] ResourceFinder.init: " + e); }
         try { InfectorDrain.init(); } catch (Exception e) { Log.err("[Xorinal] InfectorDrain.init: " + e); }
         try { LichenSystem.init(); } catch (Exception e) { Log.err("[Xorinal] LichenSystem.init: " + e); }
         try { PlanetMeshes.init(); } catch (Exception e) { Log.err("[Xorinal] PlanetMeshes.init: " + e); }

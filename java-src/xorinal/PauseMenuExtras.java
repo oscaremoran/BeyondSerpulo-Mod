@@ -7,7 +7,7 @@ import arc.util.Log;
 import mindustry.Vars;
 
 public class PauseMenuExtras {
-    private static Table row1, row2, row3, row4;
+    private static Table row1, row2, row3, row4, row5;
 
     public static void init() {
         Core.app.post(PauseMenuExtras::hook);
@@ -31,6 +31,7 @@ public class PauseMenuExtras {
             if (row2 != null) row2.remove();
             if (row3 != null) row3.remove();
             if (row4 != null) row4.remove();
+            if (row5 != null) row5.remove();
 
             cont.row();
             row1 = cont.table().colspan(4).get();
@@ -76,6 +77,10 @@ public class PauseMenuExtras {
             TextButton speedBtn = row4.button("Speed Bar: ON", GameSpeed::toggle).get();
             speedBtn.update(() -> speedBtn.setText(
                     GameSpeed.isEnabled() ? "[#7fff7f]Speed Bar: ON[]" : "Speed Bar: OFF"));
+
+            TextButton resBtn = row4.button("Resource Finder: ON", ResourceFinder::toggle).get();
+            resBtn.update(() -> resBtn.setText(
+                    ResourceFinder.isEnabled() ? "[#7fff7f]Resource Finder: ON[]" : "Resource Finder: OFF"));
         } catch (Exception ex) {
             Log.err("[Xorinal] PauseMenuExtras.injectButtons: " + ex);
         }
