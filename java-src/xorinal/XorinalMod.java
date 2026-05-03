@@ -18,6 +18,10 @@ public class XorinalMod extends Mod {
     @Override
     public void init() {
         Log.info("[Xorinal] Java mod init() — registering subsystems");
+        try { Difficulties.init(); } catch (Exception e) { Log.err("[Xorinal] Difficulties.init: " + e); }
+        try { UnitHealthBars.init(); } catch (Exception e) { Log.err("[Xorinal] UnitHealthBars.init: " + e); }
+        try { DamageNumbers.init(); } catch (Exception e) { Log.err("[Xorinal] DamageNumbers.init: " + e); }
+        try { EnemyPathOverlay.init(); } catch (Exception e) { Log.err("[Xorinal] EnemyPathOverlay.init: " + e); }
         try { InfectorDrain.init(); } catch (Exception e) { Log.err("[Xorinal] InfectorDrain.init: " + e); }
         try { LichenSystem.init(); } catch (Exception e) { Log.err("[Xorinal] LichenSystem.init: " + e); }
         try { PlanetMeshes.init(); } catch (Exception e) { Log.err("[Xorinal] PlanetMeshes.init: " + e); }
