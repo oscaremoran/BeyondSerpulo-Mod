@@ -1,0 +1,43 @@
+{
+    category: turret
+    type: ItemTurret
+    size: 3
+    health: 720
+    reload: 50
+    range: 240
+    inaccuracy: 0
+    rotateSpeed: 4
+    recoil: 2
+    shootSound: laser
+    targetAir: true
+    targetGround: true
+    ammoTypes: {
+        steel: {
+            type: LaserBulletType
+            damage: 235
+            length: 240
+            width: 22
+            sideAngle: 90
+            sideWidth: 1.4
+            sideLength: 70
+            colors: ["ff35107a", "ff5a20", "ffd060", "ffffff"]
+            lifetime: 20
+            ammoMultiplier: 2
+            shootEffect: shootBig
+            smokeEffect: shootBigSmoke
+            hitEffect: hitLancer
+            despawnEffect: hitLancer
+        }
+    }
+    requirements: [
+        copper/80
+        graphite/60
+        steel/40
+    ]
+    research: {
+        parent: salvo
+        requirements: [
+            steel/120
+        ]
+    }
+}

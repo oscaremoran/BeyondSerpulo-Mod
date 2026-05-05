@@ -1,4 +1,5 @@
 {
+    category: units
     type: UnitFactory
     size: 3
     health: 500

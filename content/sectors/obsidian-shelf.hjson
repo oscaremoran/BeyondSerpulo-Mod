@@ -1,0 +1,8 @@
+{
+    planet: vantres
+    sector: 0
+    captureWave: 10
+    difficulty: 2
+    alwaysUnlocked: false
+    research: core-foundation
+}

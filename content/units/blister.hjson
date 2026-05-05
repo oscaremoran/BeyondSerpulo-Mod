@@ -1,0 +1,36 @@
+{
+    type: tank
+    speed: 0.7
+    hitSize: 12
+    rotateSpeed: 3
+    health: 360
+    armor: 5
+    range: 80
+    weapons: [
+        {
+            name: blister-weapon
+            mirror: false
+            top: true
+            rotate: true
+            rotateSpeed: 4
+            x: 0
+            y: 0
+            shootY: 6
+            reload: 30
+            recoil: 1.5
+            shootSound: shoot
+            bullet: {
+                type: BasicBulletType
+                speed: 3.2
+                damage: 26
+                lifetime: 28
+                width: 8
+                height: 12
+                frontColor: "ff8a4a"
+                backColor: "c43a20"
+                shootEffect: shootSmall
+                smokeEffect: shootSmallSmoke
+            }
+        }
+    ]
+}

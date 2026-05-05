@@ -1,13 +1,13 @@
-# Xorinal
+# Beyond Serpulo
 
-A Mindustry planet mod featuring an organic, spore-themed world dominated by fungal ecosystems, toxic spore clouds, and bioluminescent colonies.
+A Mindustry planet expansion mod adding three custom worlds: **Xorinal** (organic spore world), **Tetra** (frost moon of Serpulo), and **Vantres** (blackened volcanic moon of Erekir). Includes new resources, units, turrets, and a full campaign chain alongside vanilla Serpulo and Erekir tech.
 
 **Minimum Mindustry version:** 154 (v8)
 
 ## Installation
 
 ### In-game (recommended, once approved)
-Open Mindustry → `Mods` → `Browse` → search for **Xorinal** → `Download`.
+Open Mindustry → `Mods` → `Browse` → search for **Beyond Serpulo** → `Download`.
 
 ### Manual
 1. Download the latest `Xorinal-Mod.zip` from [Releases](https://github.com/oscaremoran/Xorinal-Mod/releases).
@@ -15,7 +15,7 @@ Open Mindustry → `Mods` → `Browse` → search for **Xorinal** → `Download`
    - **macOS:** `~/Library/Application Support/Mindustry/mods/`
    - **Windows:** `%appdata%/Mindustry/mods/`
    - **Linux:** `~/.local/share/Mindustry/mods/`
-3. Restart Mindustry and enable Xorinal under `Mods`.
+3. Restart Mindustry and enable Beyond Serpulo under `Mods`.
 
 ## Content
 

@@ -75,6 +75,31 @@ Each sector needs:
 
 ---
 
+## Vantres unit chain — planned T4 / T5
+
+The Blister → Blaze → Inferno chain is shipped. T4 and T5 are planned, not built yet.
+
+**T4 — Combustion**
+- Heavy assault mech, ~3000 hp, armor 16, hitSize ~22
+- Primary weapon: rotary multi-barrel that fires sustained streams of melting slag (high DPS, melting status)
+- Secondary: shoulder-mounted homing rockets that AoE burn multiple enemies
+- Passive: leaves a short-lived burning trail behind it as it walks
+- Reconstructed from Inferno in a new "Vantres Crucible" (size 7 reconstructor); consumes mythril
+
+**T5 — Conflagration**
+- Walking siege mech, ~6500 hp, armor 24, hitSize ~30
+- Primary: continuous beam cannon (sustained heat ray in a wide cone)
+- Secondary: artillery mortars that drop magma craters which keep burning the floor for several seconds (terrain damage)
+- Ultimate: 60-second cooldown "Magma Pulse" — radial nova dealing massive damage and applying long melting status
+- Reconstructed from Combustion in a "Vantres Apex" (size 9 reconstructor); requires phase-fabric and mythril at scale
+
+**Open questions**
+- Should T5 fly or stay grounded? Current lore favors grounded (planet of dying volcanoes).
+- Do we need a Vantres-specific super-material above mythril for T5, or stretch mythril?
+- T4/T5 sprites should be hand-drawn — procedural generation won't read at those sizes.
+
+---
+
 ## Out of scope for 2.0 (deferred to 3.0)
 
 - Cross-planet unlock scripting (sector-on-Xorinal completion → unlock new planet)

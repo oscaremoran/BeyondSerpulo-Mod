@@ -1,0 +1,33 @@
+{
+    category: units
+    type: Reconstructor
+    size: 3
+    health: 720
+    constructTime: 1200
+    upgrades: [
+        [blister, blaze]
+    ]
+    consumes: {
+        power: 3
+        items: {
+            items: [
+                iron/40
+                steel/20
+                bronze/15
+            ]
+        }
+    }
+    requirements: [
+        copper/100
+        lead/80
+        iron/60
+        steel/30
+    ]
+    research: {
+        parent: xorinal-vantres-factory
+        requirements: [
+            steel/200
+            bronze/120
+        ]
+    }
+}

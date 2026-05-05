@@ -1,0 +1,27 @@
+{
+    category: power
+    type: ConsumeGenerator
+    size: 2
+    powerProduction: 2.6
+    itemDuration: 90
+    health: 280
+    hasItems: true
+    consumes: {
+        items: {
+            items: [
+                obsidian/1
+            ]
+        }
+    }
+    requirements: [
+        copper/40
+        graphite/25
+        obsidian/15
+    ]
+    research: {
+        parent: combustion-generator
+        requirements: [
+            obsidian/60
+        ]
+    }
+}

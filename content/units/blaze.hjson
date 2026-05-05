@@ -1,0 +1,50 @@
+{
+    type: tank
+    speed: 0.6
+    hitSize: 15
+    rotateSpeed: 2.5
+    health: 720
+    armor: 8
+    range: 90
+    weapons: [
+        {
+            name: blaze-weapon
+            mirror: false
+            top: true
+            rotate: true
+            rotateSpeed: 3.5
+            x: 0
+            y: 0
+            shootY: 8
+            reload: 9
+            shoot: { shots: 3, shotDelay: 4 }
+            inaccuracy: 14
+            recoil: 1
+            shootSound: flame
+            bullet: {
+                type: BulletType
+                speed: 3.4
+                damage: 16
+                lifetime: 22
+                width: 10
+                height: 14
+                hitSize: 7
+                pierce: true
+                pierceCap: 2
+                splashDamage: 10
+                splashDamageRadius: 16
+                status: burning
+                statusDuration: 240
+                frontColor: "ffd060"
+                backColor: "ff5a20"
+                shootEffect: shootBigSmoke
+                smokeEffect: shootSmallSmoke
+                hitEffect: hitFlameSmall
+                despawnEffect: hitFlameSmall
+                trailColor: "ff7a30"
+                trailLength: 6
+                trailWidth: 1.5
+            }
+        }
+    ]
+}

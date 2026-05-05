@@ -1,0 +1,33 @@
+{
+    category: crafting
+    type: GenericCrafter
+    size: 3
+    craftTime: 120
+    health: 540
+    hasItems: true
+    hasPower: true
+    outputItem: aluminum/1
+    consumes: {
+        power: 4
+        items: {
+            items: [
+                silicon/3
+                graphite/4
+                copper/5
+            ]
+        }
+    }
+    requirements: [
+        copper/120
+        graphite/80
+        silicon/60
+        steel/40
+    ]
+    research: {
+        parent: xorinal-forge
+        requirements: [
+            steel/200
+            silicon/200
+        ]
+    }
+}

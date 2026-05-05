@@ -1,0 +1,99 @@
+{
+    type: tank
+    speed: 0.45
+    hitSize: 22
+    rotateSpeed: 1.8
+    health: 1800
+    armor: 14
+    range: 150
+    weapons: [
+        {
+            name: inferno-weapon
+            mirror: false
+            top: true
+            rotate: true
+            rotateSpeed: 2
+            x: 0
+            y: -2
+            shootY: 10
+            reload: 60
+            recoil: 3
+            shootSound: shootBig
+            bullet: {
+                type: BulletType
+                speed: 3.6
+                damage: 48
+                lifetime: 32
+                width: 14
+                height: 20
+                splashDamage: 26
+                splashDamageRadius: 28
+                status: melting
+                statusDuration: 300
+                frontColor: "ffe0a0"
+                backColor: "ff5a20"
+                shootEffect: shootBig
+                smokeEffect: shootBigSmoke
+                hitEffect: blastsmoke
+                despawnEffect: blastsmoke
+                fragBullets: 6
+                fragRandomSpread: 360
+                fragVelocityMin: 0.4
+                fragVelocityMax: 1.0
+                fragLifeMin: 0.6
+                fragLifeMax: 1.0
+                fragBullet: {
+                    type: BulletType
+                    speed: 2.6
+                    damage: 22
+                    lifetime: 22
+                    width: 7
+                    height: 9
+                    pierce: true
+                    pierceCap: 2
+                    status: melting
+                    statusDuration: 180
+                    frontColor: "ffd070"
+                    backColor: "ff7a20"
+                    hitEffect: hitFlameSmall
+                    despawnEffect: hitFlameSmall
+                    trailColor: "ff8a30"
+                    trailLength: 5
+                    trailWidth: 1.2
+                }
+            }
+        }
+        {
+            name: inferno-ray
+            mirror: false
+            top: true
+            rotate: true
+            rotateSpeed: 1.5
+            x: 0
+            y: 6
+            shootY: 8
+            reload: 1200
+            recoil: 4
+            cooldownTime: 1200
+            shootSound: laserblast
+            bullet: {
+                type: LaserBulletType
+                damage: 540
+                length: 240
+                width: 26
+                sideAngle: 90
+                sideWidth: 1.6
+                sideLength: 80
+                colors: ["ff35107a", "ff5a20", "ffd060", "ffffff"]
+                lifetime: 24
+                pierceCap: 8
+                status: melting
+                statusDuration: 480
+                shootEffect: shootBig
+                smokeEffect: shootBigSmoke
+                hitEffect: hitLancer
+                despawnEffect: hitLancer
+            }
+        }
+    ]
+}

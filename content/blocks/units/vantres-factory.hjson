@@ -1,0 +1,29 @@
+{
+    category: units
+    type: UnitFactory
+    size: 3
+    health: 360
+    plans: [
+        {
+            unit: blister
+            time: 1500
+            requirements: [
+                iron/40
+                copper/30
+                steel/15
+            ]
+        }
+    ]
+    requirements: [
+        copper/80
+        lead/60
+        iron/40
+        steel/25
+    ]
+    research: {
+        parent: ground-factory
+        requirements: [
+            steel/80
+        ]
+    }
+}

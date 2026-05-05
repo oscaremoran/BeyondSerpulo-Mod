@@ -36,6 +36,7 @@ public class XorinalMod extends Mod {
         try { SporeClouds.init(); } catch (Exception e) { Log.err("[Xorinal] SporeClouds.init: " + e); }
         try { BloomheartHUD.init(); } catch (Exception e) { Log.err("[Xorinal] BloomheartHUD.init: " + e); }
         try { HiddenPlanets.init(); } catch (Exception e) { Log.err("[Xorinal] HiddenPlanets.init: " + e); }
+        try { VantresUnlock.init(); } catch (Exception e) { Log.err("[Xorinal] VantresUnlock.init: " + e); }
         Log.info("[Xorinal] Java mod init() complete");
     }
 }

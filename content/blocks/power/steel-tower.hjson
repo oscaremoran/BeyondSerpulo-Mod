@@ -1,0 +1,24 @@
+{
+    category: power
+    type: PowerNode
+    size: 2
+    health: 480
+    maxNodes: 50
+    laserRange: 22
+    requirements: [
+        copper/40
+        lead/30
+        graphite/25
+        plastanium/15
+        thorium/10
+        steel/20
+        phase-fabric/4
+    ]
+    research: {
+        parent: power-node-large
+        requirements: [
+            steel/60
+            phase-fabric/20
+        ]
+    }
+}

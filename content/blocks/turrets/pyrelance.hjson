@@ -1,0 +1,75 @@
+{
+    category: turret
+    type: ItemTurret
+    size: 2
+    health: 360
+    reload: 14
+    range: 130
+    inaccuracy: 12
+    rotateSpeed: 7
+    recoil: 1
+    shootSound: shootBig
+    targetAir: false
+    targetGround: true
+    shoot: { shots: 4, shotDelay: 2 }
+    ammoTypes: {
+        iron: {
+            type: BulletType
+            damage: 22
+            speed: 3.6
+            lifetime: 22
+            width: 9
+            height: 13
+            pierce: true
+            pierceCap: 2
+            status: burning
+            statusDuration: 240
+            frontColor: "ffd060"
+            backColor: "ff5a20"
+            shootEffect: shootBigSmoke
+            smokeEffect: shootSmallSmoke
+            hitEffect: hitFlameSmall
+            despawnEffect: hitFlameSmall
+            trailColor: "ff7a30"
+            trailLength: 5
+            trailWidth: 1.2
+            ammoMultiplier: 2
+        }
+        bronze: {
+            type: BulletType
+            damage: 34
+            speed: 3.8
+            lifetime: 24
+            width: 10
+            height: 15
+            pierce: true
+            pierceCap: 3
+            splashDamage: 14
+            splashDamageRadius: 16
+            status: melting
+            statusDuration: 240
+            frontColor: "ffe080"
+            backColor: "ff7a20"
+            shootEffect: shootBigSmoke
+            smokeEffect: shootSmallSmoke
+            hitEffect: hitFlameSmall
+            despawnEffect: hitFlameSmall
+            trailColor: "ff8a30"
+            trailLength: 6
+            trailWidth: 1.4
+            ammoMultiplier: 3
+        }
+    }
+    requirements: [
+        copper/60
+        graphite/45
+        iron/30
+    ]
+    research: {
+        parent: salvo
+        requirements: [
+            iron/100
+            graphite/80
+        ]
+    }
+}

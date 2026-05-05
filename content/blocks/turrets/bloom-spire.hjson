@@ -1,4 +1,5 @@
 {
+    category: turret
     type: ItemTurret
     size: 4
     range: 440

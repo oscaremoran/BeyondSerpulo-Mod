@@ -1,0 +1,38 @@
+{
+    category: crafting
+    type: GenericCrafter
+    size: 3
+    craftTime: 1800
+    health: 1100
+    hasItems: true
+    hasPower: true
+    outputItem: quantum-alloy/1
+    consumes: {
+        power: 12
+        items: {
+            items: [
+                surge-alloy/3
+                phase-fabric/3
+                bronze/4
+                aluminum/4
+            ]
+        }
+    }
+    requirements: [
+        copper/200
+        graphite/160
+        silicon/120
+        steel/80
+        aluminum/60
+        phase-fabric/40
+        surge-alloy/40
+    ]
+    research: {
+        parent: xorinal-mythril-forge
+        requirements: [
+            mythril/200
+            phase-fabric/200
+            surge-alloy/200
+        ]
+    }
+}

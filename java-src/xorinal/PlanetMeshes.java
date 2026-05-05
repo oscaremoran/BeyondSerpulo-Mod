@@ -22,7 +22,21 @@ public class PlanetMeshes {
         try {
             Planet tetra = Vars.content.getByName(ContentType.planet, "xorinal-tetra");
             Planet xorinal = Vars.content.getByName(ContentType.planet, "xorinal-xorinal");
+            Planet vantres = Vars.content.getByName(ContentType.planet, "xorinal-vantres");
 
+            if (vantres != null) {
+                // Blackened husk: deep void blacks through char/ash up into glowing crimson magma fissures and bright white-hot lava peaks.
+                // Higher mag and contrast give craggy, cracked terrain instead of smooth gradient.
+                vantres.meshLoader = () -> makeNoise(vantres, 27, 9, 7, 0.62f, 1.9f, 0.95f,
+                    new String[]{"000000","050202","0a0405","140808","2a0c0a","6a1810","d83a18","ffd070"});
+                // Layered atmosphere: dark smoke at low altitude, bright magma streaks mid, drifting embers high.
+                vantres.cloudMeshLoader = () -> clouds(vantres,
+                    new CloudLayer(2,  0.03f, 0.205f, 5, "1a08087a", 2, 0.55f, 1.6f, 0.62f),
+                    new CloudLayer(7,  0.06f, 0.215f, 6, "ff3a10b0", 3, 0.65f, 2.2f, 0.84f),
+                    new CloudLayer(13, 0.025f, 0.230f, 5, "ff7a3070", 2, 0.55f, 2.6f, 0.74f),
+                    new CloudLayer(19, 0.02f, 0.250f, 4, "ffb04050", 2, 0.5f,  3.2f, 0.82f),
+                    new CloudLayer(29, 0.012f,0.270f, 4, "ffd0701f", 2, 0.5f,  3.8f, 0.80f));
+            }
             if (tetra != null) {
                 tetra.meshLoader = () -> makeNoise(tetra, 7, 8, 7, 0.55f, 1.5f, 0.55f,
                     new String[]{"0e2440","1a3d63","265e85","4ea8d4","8ec8e8","b8dcef","e6f4ff","ffffff"});
@@ -46,6 +60,8 @@ public class PlanetMeshes {
                 Planet xorinal = Vars.content.getByName(ContentType.planet, "xorinal-xorinal");
                 if (tetra != null) tetra.meshLoader = () -> new HexMesh(tetra, 6);
                 if (xorinal != null) xorinal.meshLoader = () -> new HexMesh(xorinal, 6);
+                Planet vantres = Vars.content.getByName(ContentType.planet, "xorinal-vantres");
+                if (vantres != null) vantres.meshLoader = () -> new HexMesh(vantres, 6);
             } catch (Exception e2) {}
         }
     }

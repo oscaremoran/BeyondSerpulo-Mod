@@ -1,0 +1,35 @@
+{
+    category: units
+    type: Reconstructor
+    size: 5
+    health: 1500
+    constructTime: 2400
+    upgrades: [
+        [blaze, inferno]
+    ]
+    consumes: {
+        power: 6
+        items: {
+            items: [
+                iron/80
+                steel/50
+                bronze/40
+                aluminum/25
+            ]
+        }
+    }
+    requirements: [
+        copper/200
+        lead/160
+        iron/120
+        steel/80
+        aluminum/40
+    ]
+    research: {
+        parent: xorinal-vantres-upgrader
+        requirements: [
+            steel/600
+            aluminum/200
+        ]
+    }
+}

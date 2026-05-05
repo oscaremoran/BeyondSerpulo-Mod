@@ -1,0 +1,7 @@
+{
+    color: "30e8d0"
+    hardness: 6
+    cost: 3.4
+    radioactivity: 0.2
+    alwaysUnlocked: true
+}

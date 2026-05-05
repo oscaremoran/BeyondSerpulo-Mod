@@ -1,0 +1,41 @@
+{
+    parent: erekir
+    solarSystem: sun
+    radius: 0.42
+    orbitRadius: 2.2
+    orbitTime: 1800
+    rotateTime: 5400
+    hasAtmosphere: true
+    bloom: true
+    atmosphereColor: "ff2a08a0"
+    atmosphereRadIn: 0.02
+    atmosphereRadOut: 0.32
+    iconColor: "2a0a08"
+    lightColor: "ff4818b0"
+    landCloudColor: "ff3a1040"
+    startSector: 0
+    sectorSize: 1
+    alwaysUnlocked: true
+    defaultCore: core-shard
+    accessible: true
+    visible: true
+    clearSectorOnLose: true
+    allowWaves: true
+    prebuildBase: true
+    allowLaunchSchematics: true
+    allowLaunchToNumbered: true
+    allowLaunchLoadout: false
+    allowSectorInvasion: false
+    launchCandidates: []
+    generator: {
+        octaves: 3
+        persistence: 0.5
+        scale: 24
+        mag: 0.65
+        thresh: 1.1
+        min: 100
+        max: 100
+        radMin: 220
+        radMax: 600
+    }
+}
