@@ -46,6 +46,7 @@ public class InfectorDrain {
 
     private static void tick() {
         if (!Vars.state.isGame()) return;
+        if (Vars.net != null && Vars.net.client()) return;
         if (infectorType == null) {
             infectorType = (UnitType) Vars.content.getByName(ContentType.unit, "xorinal-infector");
             if (infectorType == null) return;

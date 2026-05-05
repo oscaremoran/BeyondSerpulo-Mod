@@ -29,10 +29,12 @@ public class GameSpeed {
 
     public static void init() {
         Events.run(EventType.Trigger.beforeGameUpdate, () -> {
+            if (Vars.net != null && Vars.net.client()) return;
             saved = Time.delta;
             if (enabled) Time.delta = saved * LEVELS[idx];
         });
         Events.run(EventType.Trigger.afterGameUpdate, () -> {
+            if (Vars.net != null && Vars.net.client()) return;
             if (enabled) Time.delta = saved;
         });
         Events.run(EventType.Trigger.update, GameSpeed::pollKeys);
@@ -42,6 +44,7 @@ public class GameSpeed {
     private static void pollKeys() {
         if (!enabled) return;
         if (Vars.state == null || !Vars.state.isGame()) return;
+        if (Vars.net != null && Vars.net.client()) return;
         if (Core.scene != null && Core.scene.getKeyboardFocus() instanceof TextField) return;
         if (Vars.ui != null && Vars.ui.chatfrag != null && Vars.ui.chatfrag.shown()) return;
 
@@ -71,7 +74,7 @@ public class GameSpeed {
     }
 
     private static void rebuild(Table panel) {
-        if (!enabled || Vars.state == null || !Vars.state.isGame()) {
+        if (!enabled || Vars.state == null || !Vars.state.isGame() || (Vars.net != null && Vars.net.client())) {
             panel.clear();
             return;
         }

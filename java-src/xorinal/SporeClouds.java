@@ -67,6 +67,7 @@ public class SporeClouds {
 
     private static void tick() {
         if (!Vars.state.isGame() || Vars.state.isPaused()) return;
+        if (Vars.net != null && Vars.net.client()) return;
         if (bloomheartType == null) {
             bloomheartType = (UnitType) Vars.content.getByName(ContentType.unit, Bloomheart.BOSS_UNIT);
             if (bloomheartType == null) return;

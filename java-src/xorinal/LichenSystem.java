@@ -109,6 +109,7 @@ public class LichenSystem {
 
     private static void tick() {
         if (!Vars.state.isGame()) return;
+        if (Vars.net != null && Vars.net.client()) return;
         Floor lichen = resolveLichen();
         if (lichen == null) return;
         if (flameBlock == null) flameBlock = Vars.content.getByName(ContentType.block, FLAME_NAME);
