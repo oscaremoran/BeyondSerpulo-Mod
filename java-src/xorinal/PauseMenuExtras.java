@@ -81,6 +81,14 @@ public class PauseMenuExtras {
             TextButton resBtn = row4.button("Resource Finder: ON", ResourceFinder::toggle).get();
             resBtn.update(() -> resBtn.setText(
                     ResourceFinder.isEnabled() ? "[#7fff7f]Resource Finder: ON[]" : "Resource Finder: OFF"));
+
+            cont.row();
+            row5 = cont.table().colspan(4).get();
+            row5.defaults().size(210f, 64f).pad(4f);
+
+            TextButton pauseBtn = row5.button("Sector Pause: OFF", SectorPause::toggle).get();
+            pauseBtn.update(() -> pauseBtn.setText(
+                    SectorPause.isEnabled() ? "[#ffd166]Sector Pause: ON[]" : "Sector Pause: OFF"));
         } catch (Exception ex) {
             Log.err("[Xorinal] PauseMenuExtras.injectButtons: " + ex);
         }

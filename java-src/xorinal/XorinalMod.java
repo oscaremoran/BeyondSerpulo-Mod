@@ -26,6 +26,7 @@ public class XorinalMod extends Mod {
         try { CoreItemDelta.init(); } catch (Exception e) { Log.err("[Xorinal] CoreItemDelta.init: " + e); }
         try { DestroyLog.init(); } catch (Exception e) { Log.err("[Xorinal] DestroyLog.init: " + e); }
         try { GameSpeed.init(); } catch (Exception e) { Log.err("[Xorinal] GameSpeed.init: " + e); }
+        try { SectorPause.init(); } catch (Exception e) { Log.err("[Xorinal] SectorPause.init: " + e); }
         try { ResourceFinder.init(); } catch (Exception e) { Log.err("[Xorinal] ResourceFinder.init: " + e); }
         try { InfectorDrain.init(); } catch (Exception e) { Log.err("[Xorinal] InfectorDrain.init: " + e); }
         try { LichenSystem.init(); } catch (Exception e) { Log.err("[Xorinal] LichenSystem.init: " + e); }
@@ -37,6 +38,7 @@ public class XorinalMod extends Mod {
         try { BloomheartHUD.init(); } catch (Exception e) { Log.err("[Xorinal] BloomheartHUD.init: " + e); }
         try { HiddenPlanets.init(); } catch (Exception e) { Log.err("[Xorinal] HiddenPlanets.init: " + e); }
         try { VantresUnlock.init(); } catch (Exception e) { Log.err("[Xorinal] VantresUnlock.init: " + e); }
+        try { SerpuloOnVantres.init(); } catch (Exception e) { Log.err("[Xorinal] SerpuloOnVantres.init: " + e); }
         Log.info("[Xorinal] Java mod init() complete");
     }
 }

@@ -46,12 +46,21 @@ public class PlanetMeshes {
                     new CloudLayer(11, 0.06f, 0.245f, 5, "e6f4ff40", 2, 0.5f, 2.2f, 0.7f));
             }
             if (xorinal != null) {
-                xorinal.meshLoader = () -> makeNoise(xorinal, 13, 8, 7, 0.55f, 1.5f, 0.6f,
-                    new String[]{"0c1f10","17371a","244a26","3E7B2F","5fa840","8ec860","b6dc7c","e0f0a8"});
+                try { xorinal.generator = new XorinalPlanetGenerator(); }
+                catch (Throwable t) { Log.err("[Xorinal] generator install failed: " + t); }
+                // Jungle gradient: deep canopy → vivid green → highland violet-corruption peaks.
+                xorinal.meshLoader = () -> makeNoise(xorinal, 13, 8, 7, 0.55f, 1.6f, 0.65f,
+                    new String[]{"08180c","112a14","1d4220","326b2c","58a83c","8acf4a","a070c8","5e2a78"});
                 xorinal.cloudMeshLoader = () -> clouds(xorinal,
-                    new CloudLayer(4, 0.18f, 0.205f, 6, "9fd47880", 3, 0.55f, 1.1f, 0.58f),
-                    new CloudLayer(9, 0.10f, 0.225f, 6, "c8e6a060", 3, 0.6f, 1.6f, 0.62f),
-                    new CloudLayer(17, 0.05f, 0.245f, 5, "e0f0a830", 2, 0.5f, 2.3f, 0.7f));
+                    // surface-hugging spore patches: low altitude, sparse threshold = blotchy purple regions on the sphere itself
+                    new CloudLayer(21, 0.015f, 0.202f, 6, "8a3ac0a8", 3, 0.55f, 1.3f, 0.78f),
+                    new CloudLayer(25, 0.01f,  0.203f, 5, "c060e090", 3, 0.55f, 1.6f, 0.82f),
+                    // Bloomheart-style void splotch: very rare, very dark
+                    new CloudLayer(33, 0.008f, 0.204f, 5, "100018d0", 2, 0.5f,  2.0f, 0.88f),
+                    // jungle haze
+                    new CloudLayer(4, 0.18f, 0.215f, 6, "9fd47880", 3, 0.55f, 1.1f, 0.58f),
+                    new CloudLayer(9, 0.10f, 0.230f, 6, "c8e6a060", 3, 0.6f, 1.6f, 0.62f),
+                    new CloudLayer(17, 0.05f, 0.250f, 5, "e0f0a830", 2, 0.5f, 2.3f, 0.7f));
             }
         } catch (Exception e) {
             Log.err("[Xorinal] planet mesh setup failed: " + e);
