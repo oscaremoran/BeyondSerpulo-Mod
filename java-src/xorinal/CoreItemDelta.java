@@ -31,11 +31,11 @@ public class CoreItemDelta {
         try {
             if (Vars.ui == null || Vars.ui.hudGroup == null) return;
             Vars.ui.hudGroup.fill(t -> {
-                t.left().bottom();
+                t.top().right();
                 t.table(panel -> {
-                    panel.left();
+                    panel.right().top();
                     panel.update(() -> rebuild(panel));
-                }).pad(8f).padBottom(120f);
+                }).padTop(60f).padRight(8f);
             });
         } catch (Exception ex) {
             Log.err("[Xorinal] CoreItemDelta.buildPanel: " + ex);
@@ -48,6 +48,10 @@ public class CoreItemDelta {
             return;
         }
         panel.clear();
+        var team = Vars.player.team();
+        var data = Vars.state.teams.get(team);
+        if (data == null || data.cores == null || data.cores.isEmpty()) return;
+
         for (Item item : Vars.content.items()) {
             Float rate = ratePerSec.get(item);
             if (rate == null || Math.abs(rate) < 0.05f) continue;
@@ -55,7 +59,7 @@ public class CoreItemDelta {
             String arrow = rate >= 0f ? "▲" : "▼";
             String text = color + arrow + " " + Strings.fixed(Math.abs(rate), 1) + "/s[]";
             panel.image(item.uiIcon).size(20f).padRight(4f);
-            panel.add(text).left().padRight(12f);
+            panel.add(text).left().padRight(8f);
             panel.row();
         }
     }

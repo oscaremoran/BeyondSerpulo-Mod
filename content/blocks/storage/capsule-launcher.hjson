@@ -1,0 +1,22 @@
+{
+    type: Block
+    category: effect
+    size: 2
+    health: 600
+    solid: false
+    update: true
+    rotate: false
+    hasItems: false
+    requirements: [
+        graphite/80
+        titanium/40
+        silicon/30
+    ]
+    research: {
+        parent: core-shard
+        requirements: [
+            copper/40
+            graphite/20
+        ]
+    }
+}

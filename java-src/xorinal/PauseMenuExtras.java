@@ -7,7 +7,7 @@ import arc.util.Log;
 import mindustry.Vars;
 
 public class PauseMenuExtras {
-    private static Table row1, row2, row3, row4, row5;
+    private static Table row1, row2, row3, row4, row5, row6;
 
     public static void init() {
         Core.app.post(PauseMenuExtras::hook);
@@ -32,6 +32,7 @@ public class PauseMenuExtras {
             if (row3 != null) row3.remove();
             if (row4 != null) row4.remove();
             if (row5 != null) row5.remove();
+            if (row6 != null) row6.remove();
 
             cont.row();
             row1 = cont.table().colspan(4).get();
@@ -89,6 +90,19 @@ public class PauseMenuExtras {
             TextButton pauseBtn = row5.button("Sector Pause: OFF", SectorPause::toggle).get();
             pauseBtn.update(() -> pauseBtn.setText(
                     SectorPause.isEnabled() ? "[#ffd166]Sector Pause: ON[]" : "Sector Pause: OFF"));
+
+            row5.button("[#ffe066]Pilot Roster[]", () -> {
+                Vars.ui.paused.hide();
+                PilotRosterUI.show();
+            });
+
+            cont.row();
+            row6 = cont.table().colspan(4).get();
+            row6.defaults().size(210f, 64f).pad(4f);
+
+            TextButton intelBtn = row6.button("Wave Intel: ON", WaveIntel::toggle).get();
+            intelBtn.update(() -> intelBtn.setText(
+                    WaveIntel.isEnabled() ? "[#7fff7f]Wave Intel: ON[]" : "Wave Intel: OFF"));
         } catch (Exception ex) {
             Log.err("[Xorinal] PauseMenuExtras.injectButtons: " + ex);
         }

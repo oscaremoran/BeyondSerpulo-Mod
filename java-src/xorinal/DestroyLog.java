@@ -13,7 +13,7 @@ import mindustry.game.EventType;
 import mindustry.gen.Tex;
 
 public class DestroyLog {
-    private static final int MAX_ENTRIES = 10;
+    private static final int MAX_ENTRIES = 3;
     private static final float LIFETIME = 60f * 60f;
     private static final Seq<Entry> entries = new Seq<>();
     private static boolean enabled = true;
@@ -59,7 +59,7 @@ public class DestroyLog {
 
     private static void push(Entry e) {
         entries.add(e);
-        if (entries.size > MAX_ENTRIES * 2) {
+        if (entries.size > MAX_ENTRIES) {
             entries.sort((a, b) -> Float.compare(b.priority, a.priority));
             entries.truncate(MAX_ENTRIES);
         }

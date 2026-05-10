@@ -4,8 +4,6 @@ import arc.Core;
 import arc.Events;
 import arc.input.KeyCode;
 import arc.scene.ui.TextField;
-import arc.scene.ui.layout.Table;
-import arc.util.Log;
 import arc.util.Strings;
 import arc.util.Time;
 import mindustry.Vars;
@@ -38,7 +36,6 @@ public class GameSpeed {
             if (enabled) Time.delta = saved;
         });
         Events.run(EventType.Trigger.update, GameSpeed::pollKeys);
-        Core.app.post(GameSpeed::buildBar);
     }
 
     private static void pollKeys() {
@@ -59,31 +56,4 @@ public class GameSpeed {
         }
     }
 
-    private static void buildBar() {
-        try {
-            if (Vars.ui == null || Vars.ui.hudGroup == null) return;
-            Vars.ui.hudGroup.fill(t -> {
-                t.top();
-                t.table(panel -> {
-                    panel.update(() -> rebuild(panel));
-                }).pad(4f).padTop(60f);
-            });
-        } catch (Exception ex) {
-            Log.err("[Xorinal] GameSpeed.buildBar: " + ex);
-        }
-    }
-
-    private static void rebuild(Table panel) {
-        if (!enabled || Vars.state == null || !Vars.state.isGame() || (Vars.net != null && Vars.net.client())) {
-            panel.clear();
-            return;
-        }
-        panel.clear();
-        for (int i = 0; i < LEVELS.length; i++) {
-            String label = (i == idx ? "[gold]" : "[lightgray]") +
-                    Strings.fixed(LEVELS[i], LEVELS[i] >= 1f ? 1 : 2) + "x[]";
-            panel.add(label).pad(2f);
-            if (i < LEVELS.length - 1) panel.add("[gray]·[]").pad(1f);
-        }
-    }
 }
