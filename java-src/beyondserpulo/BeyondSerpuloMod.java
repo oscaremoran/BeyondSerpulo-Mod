@@ -19,6 +19,7 @@ public class BeyondSerpuloMod extends Mod {
     @Override
     public void init() {
         Log.info("[BeyondSerpulo] Java mod init() — registering subsystems");
+        try { mindustry.editor.MapResizeDialog.maxSize = 1500; } catch (Exception e) { Log.err("[BeyondSerpulo] MapResizeDialog.maxSize override: " + e); }
         try { Difficulties.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] Difficulties.init: " + e); }
         try { UnitHealthBars.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] UnitHealthBars.init: " + e); }
         try { DamageNumbers.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] DamageNumbers.init: " + e); }

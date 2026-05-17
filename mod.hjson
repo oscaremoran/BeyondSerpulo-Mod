@@ -3,14 +3,15 @@ displayName: "[green]Beyond Serpulo[]"
 author: "Oscar Moran"
 description:
     '''
-    Beyond Serpulo expands the Mindustry universe with new planets — Xorinal (organic spore world), Tetra (frost moon), and Vantres (blackened volcanic moon of Erekir). Currently v1.4. Firmly Beta. Try it and if you like it please star on github! Contact me at oscaremoran20@gmail.com. 6 campaign sectors so far, 14 units, and lots of buildings.
-
+    Beyond Serpulo expands the Mindustry universe with new planets — Xorinal (organic spore world), Tetra (frost moon), and Vantres (blackened volcanic moon of Erekir). Currently v1.6. Firmly Beta. Try it and if you like it please star on github! Contact me at oscaremoran20@gmail.com. 
     UPDATES:
-    LICHEN UPDATE (v1.2) spreads automatically from spore combustors — destroy it with flamethrowers or you can't delete blocks!
-    FLAMEWAR UPDATE (v1.3) adds the Flame Array (blazing bloom-essence turret that wipes lichen in a huge radius) and the Sear unit (T1 flame drake that burns lichen in its aim cone).
-    TETRA UPDATE (v1.4) opens up Tetra: gorgeous new noise-mesh planet view, Cryolith and Cryobreaker frost mechs, Glacierwing T2 flyer, the Frost Shielder reconstructor, Frost Router, and the Frozen Cavern landing sector.
+    LICHEN UPDATE (v1.2)
+    FLAMEWAR UPDATE (v1.3)
+    TETRA UPDATE (v1.4)
+    QOL UPDATE (v1.5)
+    PILOTS UPDATE (v1.6) 
 
-    Please star if you like the mod! Our goal right now is 10 stars. If we get there, I'll add Xorinal t5!
+    Please star if you like the mod! Our goal right now is 10 stars. If we get there, I'll add more campaign features!
     '''
 subtitle: "Campaign Overhaul"
 version: "1.6"
