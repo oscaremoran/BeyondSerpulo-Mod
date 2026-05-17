@@ -10,7 +10,7 @@ A Mindustry planet expansion mod adding three custom worlds: **Xorinal** (organi
 Open Mindustry → `Mods` → `Browse` → search for **Beyond Serpulo** → `Download`.
 
 ### Manual
-1. Download the latest `Xorinal-Mod.zip` from [Releases](https://github.com/oscaremoran/Xorinal-Mod/releases).
+1. Download the latest `BeyondSerpulo-Mod.zip` from [Releases](https://github.com/oscaremoran/BeyondSerpulo-Mod/releases).
 2. Drop the zip into your Mindustry mods directory:
    - **macOS:** `~/Library/Application Support/Mindustry/mods/`
    - **Windows:** `%appdata%/Mindustry/mods/`
@@ -36,7 +36,9 @@ Open Mindustry → `Mods` → `Browse` → search for **Beyond Serpulo** → `Do
 
 ## Development
 
-HJSON-only content with a small `scripts/main.js` for game-version compatibility patches. No Java.
+Mix of HJSON content and Java extensions under `java-src/beyondserpulo/`. Build with `./build.sh` (requires Mindustry's `desktop.jar` on the path configured in the script).
+
+**Naming note:** the mod's internal id is `xorinal` and many content ids are prefixed `xorinal-*`. This is intentional — the mod was originally called Xorinal and renaming the id would invalidate every existing player save and schematic. The display name, jar artifact, repo, and Java package all use `BeyondSerpulo` / `beyondserpulo`. "Xorinal" now refers only to one of the three planets in the mod.
 
 ## License
 

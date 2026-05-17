@@ -1,5 +1,6 @@
 #!/bin/bash
-# Build the Xorinal Java mod classes (no Gradle).
+# Build the Beyond Serpulo Java mod classes (no Gradle).
+# Note: internal mod id is "xorinal" (kept for save compatibility); display name is "Beyond Serpulo".
 # Outputs compiled .class files to build/classes/, ready to be packaged into the mod zip.
 set -e
 
@@ -23,18 +24,18 @@ find . -name ".DS_Store" -not -path "./.git/*" -not -path "./build/*" -delete
 
 # Update the project jar with freshly compiled classes and current asset files.
 # `jar uf` only adds/replaces — it doesn't delete entries, so renamed/removed assets can linger.
-jar uf Xorinal-Mod.jar -C build/classes . >/dev/null
+jar uf BeyondSerpulo-Mod.jar -C build/classes . >/dev/null
 for d in content bundles sprites maps schematics; do
-    [ -d "$d" ] && jar uf Xorinal-Mod.jar "$d" >/dev/null
+    [ -d "$d" ] && jar uf BeyondSerpulo-Mod.jar "$d" >/dev/null
 done
-[ -f mod.hjson ] && jar uf Xorinal-Mod.jar mod.hjson >/dev/null
-[ -f icon.png ] && jar uf Xorinal-Mod.jar icon.png >/dev/null
+[ -f mod.hjson ] && jar uf BeyondSerpulo-Mod.jar mod.hjson >/dev/null
+[ -f icon.png ] && jar uf BeyondSerpulo-Mod.jar icon.png >/dev/null
 
 # Sync to the Steam Mindustry mods folder (the path the Steam-launched game actually loads).
 STEAM_MODS="/Users/seanmoran/Library/Application Support/Steam/steamapps/common/Mindustry/Mindustry.app/Contents/Resources/saves/mods"
 if [ -d "$STEAM_MODS" ]; then
-    cp Xorinal-Mod.jar "$STEAM_MODS/Xorinal-Mod.zip"
-    echo "Synced to Steam: $STEAM_MODS/Xorinal-Mod.zip"
+    cp BeyondSerpulo-Mod.jar "$STEAM_MODS/BeyondSerpulo-Mod.zip"
+    echo "Synced to Steam: $STEAM_MODS/BeyondSerpulo-Mod.zip"
 else
     echo "WARNING: Steam mods folder not found at $STEAM_MODS — skipping sync."
 fi
@@ -42,6 +43,6 @@ fi
 # Also sync to the user-data Mindustry mods folder if it exists (non-Steam launches).
 USER_MODS="$HOME/Library/Application Support/Mindustry/mods"
 if [ -d "$USER_MODS" ]; then
-    cp Xorinal-Mod.jar "$USER_MODS/Xorinal-Mod.jar"
-    echo "Synced to user mods: $USER_MODS/Xorinal-Mod.jar"
+    cp BeyondSerpulo-Mod.jar "$USER_MODS/BeyondSerpulo-Mod.jar"
+    echo "Synced to user mods: $USER_MODS/BeyondSerpulo-Mod.jar"
 fi

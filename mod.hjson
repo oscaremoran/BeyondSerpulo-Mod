@@ -15,7 +15,7 @@ description:
 subtitle: "Campaign Overhaul"
 version: "1.6"
 minGameVersion: "154"
-main: "xorinal.XorinalMod"
-repo: "oscaremoran/Xorinal-Mod"
+main: "beyondserpulo.BeyondSerpuloMod"
+repo: "oscaremoran/BeyondSerpulo-Mod"
 java: true
 hidden: false
