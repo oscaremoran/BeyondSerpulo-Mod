@@ -1,11 +1,21 @@
 {
     planet: xorinal
-    sector: 21
-    difficulty: 7
+    sector: 20
+    difficulty: 2
     rules: {
         attackMode: true
     }
     research: {
-        parent: crux-spaceport-defense
+        parent: biohazard-facility
+        objectives: [
+            {
+                type: SectorComplete
+                preset: biohazard-facility
+            }
+            {
+                type: SectorComplete
+                preset: mycelium-front
+            }
+        ]
     }
 }

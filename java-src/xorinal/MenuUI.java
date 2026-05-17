@@ -11,6 +11,7 @@ import arc.struct.Seq;
 import mindustry.game.Team;
 import mindustry.gen.Building;
 import mindustry.gen.Groups;
+import mindustry.gen.Icon;
 import mindustry.ui.Styles;
 
 public class MenuUI {
@@ -19,6 +20,12 @@ public class MenuUI {
     }
 
     private static void setup() {
+        try {
+            Vars.ui.menufrag.addButton("Daily Challenge", Icon.star, DailyChallengeUI::open);
+        } catch (Exception ex) {
+            Log.err("[Xorinal] daily-challenge menu button failed: " + ex);
+        }
+
         try {
             Table wrap = new Table();
             wrap.setFillParent(true);

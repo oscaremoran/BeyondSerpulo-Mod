@@ -6,12 +6,12 @@
     orbitTime: 1800
     rotateTime: 5400
     hasAtmosphere: true
-    bloom: true
-    atmosphereColor: "ff2a08a0"
+    bloom: false
+    atmosphereColor: "c8200840"
     atmosphereRadIn: 0.02
-    atmosphereRadOut: 0.32
-    iconColor: "2a0a08"
-    lightColor: "ff4818b0"
+    atmosphereRadOut: 0.22
+    iconColor: "c83018"
+    lightColor: "ffa07080"
     landCloudColor: "ff3a1040"
     startSector: 0
     sectorSize: 1

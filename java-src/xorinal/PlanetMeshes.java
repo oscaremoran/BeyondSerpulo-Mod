@@ -25,17 +25,15 @@ public class PlanetMeshes {
             Planet vantres = Vars.content.getByName(ContentType.planet, "xorinal-vantres");
 
             if (vantres != null) {
-                // Blackened husk: deep void blacks through char/ash up into glowing crimson magma fissures and bright white-hot lava peaks.
-                // Higher mag and contrast give craggy, cracked terrain instead of smooth gradient.
-                vantres.meshLoader = () -> makeNoise(vantres, 27, 9, 7, 0.62f, 1.9f, 0.95f,
-                    new String[]{"000000","050202","0a0405","140808","2a0c0a","6a1810","d83a18","ffd070"});
-                // Layered atmosphere: dark smoke at low altitude, bright magma streaks mid, drifting embers high.
+                // Lava world: dark basalt crust shot through with bright crimson and orange molten cracks; white-hot peaks.
+                // Lower scale = larger, more visible features so the sphere doesn't average to mud when zoomed close.
+                // High contrast between dark crust mids and saturated red/orange highs gives real visible terrain.
+                vantres.meshLoader = () -> makeNoise(vantres, 27, 6, 5, 0.55f, 1.4f, 0.6f,
+                    new String[]{"1a0404","2a0606","4a0808","6a0c0a","a01a10","d83018","ff6020","ffa040"});
+                // Sparse glowing atmosphere — thin so the surface shows through. Two soft layers, low alpha.
                 vantres.cloudMeshLoader = () -> clouds(vantres,
-                    new CloudLayer(2,  0.03f, 0.205f, 5, "1a08087a", 2, 0.55f, 1.6f, 0.62f),
-                    new CloudLayer(7,  0.06f, 0.215f, 6, "ff3a10b0", 3, 0.65f, 2.2f, 0.84f),
-                    new CloudLayer(13, 0.025f, 0.230f, 5, "ff7a3070", 2, 0.55f, 2.6f, 0.74f),
-                    new CloudLayer(19, 0.02f, 0.250f, 4, "ffb04050", 2, 0.5f,  3.2f, 0.82f),
-                    new CloudLayer(29, 0.012f,0.270f, 4, "ffd0701f", 2, 0.5f,  3.8f, 0.80f));
+                    new CloudLayer(7,  0.04f, 0.215f, 5, "ff401840", 2, 0.55f, 2.0f, 0.78f),
+                    new CloudLayer(19, 0.02f, 0.240f, 4, "ff80401e", 2, 0.5f,  3.0f, 0.82f));
             }
             if (tetra != null) {
                 tetra.meshLoader = () -> makeNoise(tetra, 7, 8, 7, 0.55f, 1.5f, 0.55f,
@@ -81,20 +79,21 @@ public class PlanetMeshes {
             String h = i < hex.length ? hex[i] : hex[hex.length - 1];
             c[i] = Color.valueOf(h);
         }
-        // The 8-color NoiseMesh constructor exists in Mindustry's runtime jar but isn't in the
-        // classpath jar we compile against — call it via reflection so we get gradient terrain.
+        // Use Mindustry's 14-arg two-color NoiseMesh: base color shows broadly, overlay shows where
+        // the second noise exceeds threshold. Picks a dark stop for base and a bright stop for overlay
+        // so terrain reads as visible high-contrast features instead of a flat-tinted hex sphere.
         try {
             for (var ctor : NoiseMesh.class.getConstructors()) {
-                if (ctor.getParameterCount() == 16) {
+                if (ctor.getParameterCount() == 14) {
                     return (GenericMesh) ctor.newInstance(
-                        planet, seed, divisions, 0.6f, octaves, persistence, scale, mag,
-                        c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7]);
+                        planet, seed, divisions, 1f, octaves, persistence, scale, mag,
+                        c[2], c[6], octaves, persistence, scale * 1.6f, 0.5f);
                 }
             }
         } catch (Exception ex) {
             Log.err("[Xorinal] reflective NoiseMesh failed: " + ex);
         }
-        return new NoiseMesh(planet, seed, divisions, c[3], 0.6f, octaves, persistence, scale, mag);
+        return new NoiseMesh(planet, seed, divisions, c[5], 0.6f, octaves, persistence, scale, mag);
     }
 
     private static class CloudLayer {

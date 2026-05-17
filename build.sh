@@ -21,8 +21,14 @@ echo "Compiled $(find build/classes -name '*.class' | wc -l | tr -d ' ') classes
 # Strip macOS metadata so it doesn't get bundled into the jar.
 find . -name ".DS_Store" -not -path "./.git/*" -not -path "./build/*" -delete
 
-# Update the project jar with freshly compiled classes.
+# Update the project jar with freshly compiled classes and current asset files.
+# `jar uf` only adds/replaces — it doesn't delete entries, so renamed/removed assets can linger.
 jar uf Xorinal-Mod.jar -C build/classes . >/dev/null
+for d in content bundles sprites maps schematics; do
+    [ -d "$d" ] && jar uf Xorinal-Mod.jar "$d" >/dev/null
+done
+[ -f mod.hjson ] && jar uf Xorinal-Mod.jar mod.hjson >/dev/null
+[ -f icon.png ] && jar uf Xorinal-Mod.jar icon.png >/dev/null
 
 # Sync to the Steam Mindustry mods folder (the path the Steam-launched game actually loads).
 STEAM_MODS="/Users/seanmoran/Library/Application Support/Steam/steamapps/common/Mindustry/Mindustry.app/Contents/Resources/saves/mods"

@@ -39,6 +39,7 @@ public class XorinalMod extends Mod {
         try { InfectorDrain.init(); } catch (Exception e) { Log.err("[Xorinal] InfectorDrain.init: " + e); }
         try { LichenSystem.init(); } catch (Exception e) { Log.err("[Xorinal] LichenSystem.init: " + e); }
         try { PlanetMeshes.init(); } catch (Exception e) { Log.err("[Xorinal] PlanetMeshes.init: " + e); }
+        try { DailyChallenge.init(); } catch (Exception e) { Log.err("[Xorinal] DailyChallenge.init: " + e); }
         try { MenuUI.init(); } catch (Exception e) { Log.err("[Xorinal] MenuUI.init: " + e); }
         try { Codex.init(); } catch (Exception e) { Log.err("[Xorinal] Codex.init: " + e); }
         try { Wizard.init(); } catch (Exception e) { Log.err("[Xorinal] Wizard.init: " + e); }
