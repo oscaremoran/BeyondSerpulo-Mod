@@ -14,6 +14,10 @@ public class BeyondSerpuloMod extends Mod {
         try { mindustry.world.meta.Attribute.add("crystal"); } catch (Exception e) { Log.err("[BeyondSerpulo] Attribute.add(crystal): " + e); }
         try { SporeClouds.registerContent(); } catch (Exception e) { Log.err("[BeyondSerpulo] SporeClouds.registerContent: " + e); }
         try { PilotEffects.register(); } catch (Exception e) { Log.err("[BeyondSerpulo] PilotEffects.register: " + e); }
+        try { BossUnits.register(); } catch (Exception e) { Log.err("[BeyondSerpulo] BossUnits.register: " + e); }
+        try { BossProgrammer.register(); } catch (Exception e) { Log.err("[BeyondSerpulo] BossProgrammer.register: " + e); }
+        try { MoltenPyre.register(); } catch (Exception e) { Log.err("[BeyondSerpulo] MoltenPyre.register: " + e); }
+        try { TitanFabricator.register(); } catch (Exception e) { Log.err("[BeyondSerpulo] TitanFabricator.register: " + e); }
     }
 
     @Override
@@ -45,11 +49,19 @@ public class BeyondSerpuloMod extends Mod {
         try { Codex.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] Codex.init: " + e); }
         try { Wizard.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] Wizard.init: " + e); }
         try { Bloomheart.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] Bloomheart.init: " + e); }
+        try { Nemesis.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] Nemesis.init: " + e); }
+        try { Celestial.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] Celestial.init: " + e); }
+        try { Abyssal.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] Abyssal.init: " + e); }
+        try { Ragnarok.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] Ragnarok.init: " + e); }
         try { SporeClouds.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] SporeClouds.init: " + e); }
         try { BloomheartHUD.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] BloomheartHUD.init: " + e); }
         try { HiddenPlanets.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] HiddenPlanets.init: " + e); }
         try { VantresUnlock.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] VantresUnlock.init: " + e); }
         try { SerpuloOnVantres.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] SerpuloOnVantres.init: " + e); }
+        try { MoltenPyre.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] MoltenPyre.init: " + e); }
+        try { TitanFabricator.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] TitanFabricator.init: " + e); }
+        try { BossProgrammer.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] BossProgrammer.init: " + e); }
+        try { BossHUD.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] BossHUD.init: " + e); }
         Log.info("[BeyondSerpulo] Java mod init() complete");
     }
 }

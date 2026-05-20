@@ -17,8 +17,8 @@ public class GameSpeed {
     };
 
     private static int idx = 4;
-    private static float saved;
     private static boolean enabled = true;
+
     public static boolean isEnabled() { return enabled; }
     public static void toggle() {
         enabled = !enabled;
@@ -26,15 +26,17 @@ public class GameSpeed {
     }
 
     public static void init() {
-        Events.run(EventType.Trigger.beforeGameUpdate, () -> {
-            if (Vars.net != null && Vars.net.client()) return;
-            saved = Time.delta;
-            if (enabled) Time.delta = saved * LEVELS[idx];
+        // Replace Mindustry's delta provider globally — this affects every reader of
+        // Time.delta, including unit physics and async processes, which the old
+        // beforeGameUpdate/afterGameUpdate wrap didn't reach.
+        Time.setDeltaProvider(() -> {
+            float raw = Math.min(Core.graphics.getDeltaTime() * 60f, 3f);
+            if (!enabled || Vars.net != null && Vars.net.client()) return raw;
+            float mul = LEVELS[idx];
+            // Clamp the post-multiplied delta to avoid runaway per-frame jumps.
+            return Math.min(raw * mul, 30f);
         });
-        Events.run(EventType.Trigger.afterGameUpdate, () -> {
-            if (Vars.net != null && Vars.net.client()) return;
-            if (enabled) Time.delta = saved;
-        });
+
         Events.run(EventType.Trigger.update, GameSpeed::pollKeys);
     }
 
@@ -55,5 +57,4 @@ public class GameSpeed {
             }
         }
     }
-
 }

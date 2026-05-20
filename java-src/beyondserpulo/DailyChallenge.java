@@ -4,10 +4,12 @@ import arc.Core;
 import arc.Events;
 import arc.util.Log;
 import mindustry.Vars;
+import mindustry.game.EventType.BlockDestroyEvent;
 import mindustry.game.EventType.GameOverEvent;
 import mindustry.game.EventType.SectorCaptureEvent;
 import mindustry.game.EventType.WorldLoadEvent;
 import mindustry.maps.Map;
+import mindustry.world.blocks.storage.CoreBlock;
 
 import java.time.LocalDate;
 import java.time.ZoneOffset;
@@ -22,7 +24,10 @@ public class DailyChallenge {
         // Score = highest wave reached before core dies.
         SURVIVE_WAVES,
         // Score = seconds elapsed when sector is captured (lower is better).
-        FASTEST_CAPTURE
+        FASTEST_CAPTURE,
+        // Score = sum of points from destroying enemy cores
+        // (shard=1, foundation=3, nucleus=5). Higher is better.
+        CORE_POINTS
     }
 
     public static class Entry {
@@ -37,7 +42,7 @@ public class DailyChallenge {
     // Rotation pool. Filenames must match files the user drops into maps/ (Mindustry flattens the maps dir).
     public static final Entry[] entries = new Entry[]{
         new Entry("daily-1", "Daily 1",  Mode.SURVIVE_WAVES),
-        new Entry("daily-2", "Daily 2",  Mode.FASTEST_CAPTURE),
+        new Entry("daily-2", "Daily 2",  Mode.CORE_POINTS),
         new Entry("daily-3", "Daily 3",  Mode.SURVIVE_WAVES),
         // TEMP: index 3 swapped to daily-1/SURVIVE_WAVES for testing on 2026-05-15. Revert to ("daily-4", "Daily 4", FASTEST_CAPTURE).
         new Entry("daily-1", "Daily 1",  Mode.SURVIVE_WAVES),
@@ -50,8 +55,20 @@ public class DailyChallenge {
     // True while a daily-challenge run is in progress; consulted by SectorPause/save hooks.
     private static boolean active = false;
     private static long runStartMillis = 0L;
+    private static int corePoints = 0;
 
     public static boolean isActive() { return active; }
+    public static int corePoints() { return corePoints; }
+
+    private static int pointsFor(String coreName) {
+        if (coreName == null) return 0;
+        switch (coreName) {
+            case "core-shard": return 1;
+            case "core-foundation": return 3;
+            case "core-nucleus": return 5;
+            default: return 0;
+        }
+    }
 
     public static String todayKey() {
         return LocalDate.now(ZoneOffset.UTC).toString(); // e.g. "2026-05-15"
@@ -96,6 +113,7 @@ public class DailyChallenge {
     public static void beginRun() {
         active = true;
         runStartMillis = System.currentTimeMillis();
+        corePoints = 0;
         markAttempted();
     }
 
@@ -107,20 +125,55 @@ public class DailyChallenge {
     public static void init() {
         // End-of-run detection wires score computation. Submission UI lives in ScoreSubmit.
         Events.on(GameOverEvent.class, e -> {
-            Log.info("[BeyondSerpulo] GameOverEvent fired; active=" + active + " wave=" + Vars.state.wave);
+            Log.info("[BeyondSerpulo] GameOverEvent fired; active=" + active + " wave=" + Vars.state.wave + " corePoints=" + corePoints);
             if (!active) return;
-            int score = (today().mode == Mode.SURVIVE_WAVES) ? Math.max(0, Vars.state.wave - 1) : -1;
-            if (today().mode == Mode.SURVIVE_WAVES) Ranks.updateFromScore(today().mapName, score);
+            int score;
+            switch (today().mode) {
+                case SURVIVE_WAVES:
+                    score = Math.max(0, Vars.state.wave - 1);
+                    Ranks.updateFromScore(today().mapName, score);
+                    break;
+                case CORE_POINTS:
+                    score = corePoints;
+                    Ranks.updateFromScore(today().mapName, score);
+                    break;
+                default:
+                    score = -1;
+            }
             ScoreSubmit.offerSubmit(today(), score);
             active = false;
         });
         Events.on(SectorCaptureEvent.class, e -> {
             if (!active) return;
-            if (today().mode == Mode.FASTEST_CAPTURE) {
-                int score = (int) elapsedSeconds();
-                ScoreSubmit.offerSubmit(today(), score);
+            int score;
+            switch (today().mode) {
+                case FASTEST_CAPTURE:
+                    score = (int) elapsedSeconds();
+                    break;
+                case CORE_POINTS:
+                    score = corePoints;
+                    Ranks.updateFromScore(today().mapName, score);
+                    break;
+                default:
+                    score = -1;
             }
+            ScoreSubmit.offerSubmit(today(), score);
             active = false;
+        });
+        Events.on(BlockDestroyEvent.class, e -> {
+            if (!active || e == null || e.tile == null) return;
+            if (today().mode != Mode.CORE_POINTS) return;
+            try {
+                if (!(e.tile.block() instanceof CoreBlock)) return;
+                int pts = pointsFor(e.tile.block().name);
+                if (pts <= 0) return;
+                if (Vars.player != null && e.tile.team() == Vars.player.team()) return;
+                corePoints += pts;
+                if (Vars.ui != null) {
+                    Vars.ui.showInfoToast("[gold]+" + pts + "[] core point" + (pts == 1 ? "" : "s")
+                        + "  [lightgray](total: " + corePoints + ")[]", 2f);
+                }
+            } catch (Exception ex) { Log.err("[BeyondSerpulo] core-points tally: " + ex); }
         });
         Events.on(WorldLoadEvent.class, e -> {
             Log.info("[BeyondSerpulo] WorldLoadEvent; active=" + active + " state.map=" + (Vars.state.map==null?"null":Vars.state.map.name()) + " today=" + today().mapName);

@@ -41,6 +41,15 @@ public class Ranks {
             new Rank("Vanguard",  75),
             new Rank("Legend",    100)
         });
+        ladders.put("daily-2", new Rank[]{
+            new Rank("Recruit",   1),   // 1 shard
+            new Rank("Cadet",     2),   // shard + foundation, or 1 foundation
+            new Rank("Pilot",     5),   // 1 nucleus, or 1 foundation + 2 shards
+            new Rank("Veteran",   7),
+            new Rank("Commander", 9),
+            new Rank("Vanguard",  10),
+            new Rank("Legend",    15)
+        });
         ladders.put("daily-3", new Rank[]{
             new Rank("Recruit",   3),
             new Rank("Cadet",     7),

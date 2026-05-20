@@ -4,7 +4,7 @@
     size: 2
     health: 480
     maxNodes: 50
-    laserRange: 22
+    laserRange: 85
     requirements: [
         copper/40
         lead/30

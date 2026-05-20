@@ -22,9 +22,9 @@ echo "Compiled $(find build/classes -name '*.class' | wc -l | tr -d ' ') classes
 # Strip macOS metadata so it doesn't get bundled into the jar.
 find . -name ".DS_Store" -not -path "./.git/*" -not -path "./build/*" -delete
 
-# Update the project jar with freshly compiled classes and current asset files.
-# `jar uf` only adds/replaces — it doesn't delete entries, so renamed/removed assets can linger.
-jar uf BeyondSerpulo-Mod.jar -C build/classes . >/dev/null
+# Rebuild the jar from scratch so renamed/removed classes and assets don't linger.
+rm -f BeyondSerpulo-Mod.jar
+jar cf BeyondSerpulo-Mod.jar -C build/classes . >/dev/null
 for d in content bundles sprites maps schematics; do
     [ -d "$d" ] && jar uf BeyondSerpulo-Mod.jar "$d" >/dev/null
 done
