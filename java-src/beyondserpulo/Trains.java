@@ -75,6 +75,7 @@ public class Trains {
         public RailBlock(String name) {
             super(name);
             localizedName = "Rail";
+            description = "Electrified rail tile. Carries power along its length and lets trains travel between depots and stations. Underpowered segments slow any train crossing them to 25% speed. Lay continuous rails between a Depot and a Station to open a shuttle route.";
             size = 1;
             health = 80;
             solid = false;
@@ -101,6 +102,7 @@ public class Trains {
         public DepotBlock(String name) {
             super(name);
             localizedName = "Train Depot";
+            description = "Home base for a shuttle train. Holds up to 400 items in a buffer and serves as the train's loading endpoint — the train picks cargo up here and ferries it to a connected Train Station. Place adjacent to a rail tile, and adjacent to a Train Assembler if you don't yet have a train.";
             size = 4;
             health = 2400;
             solid = true;
@@ -135,6 +137,7 @@ public class Trains {
         public StationBlock(String name) {
             super(name);
             localizedName = "Train Station";
+            description = "Drop-off terminal for arriving trains. Buffers up to 300 items received from incoming cargo cars. Place adjacent to a rail tile connected to a Depot; the train auto-finds the nearest reachable station via the rail network.";
             size = 3;
             health = 1500;
             solid = true;
@@ -180,6 +183,7 @@ public class Trains {
         public AssemblerBlock(String name) {
             super(name);
             localizedName = "Train Assembler";
+            description = "Factory that constructs trains for an adjacent Train Depot. Only accepts items required for assembly (titanium, silicon, surge-alloy, phase-fabric). Pays the full build cost up front, then spends 8 seconds assembling a locomotive + cargo car under its twin gantry cranes. When the train is complete it launches onto the depot's rail; if a train is already in service, the assembler holds at full progress and waits.";
             size = 4;
             health = 2200;
             solid = true;
