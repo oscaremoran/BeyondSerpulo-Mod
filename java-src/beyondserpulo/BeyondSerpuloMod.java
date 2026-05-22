@@ -18,6 +18,7 @@ public class BeyondSerpuloMod extends Mod {
         try { BossProgrammer.register(); } catch (Exception e) { Log.err("[BeyondSerpulo] BossProgrammer.register: " + e); }
         try { MoltenPyre.register(); } catch (Exception e) { Log.err("[BeyondSerpulo] MoltenPyre.register: " + e); }
         try { TitanFabricator.register(); } catch (Exception e) { Log.err("[BeyondSerpulo] TitanFabricator.register: " + e); }
+        try { Trains.registerContent(); } catch (Exception e) { Log.err("[BeyondSerpulo] Trains.registerContent: " + e); }
     }
 
     @Override
@@ -62,6 +63,7 @@ public class BeyondSerpuloMod extends Mod {
         try { TitanFabricator.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] TitanFabricator.init: " + e); }
         try { BossProgrammer.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] BossProgrammer.init: " + e); }
         try { BossHUD.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] BossHUD.init: " + e); }
+        try { Trains.init(); } catch (Exception e) { Log.err("[BeyondSerpulo] Trains.init: " + e); }
         Log.info("[BeyondSerpulo] Java mod init() complete");
     }
 }

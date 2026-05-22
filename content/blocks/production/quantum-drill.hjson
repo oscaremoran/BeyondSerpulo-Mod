@@ -1,0 +1,24 @@
+{
+    category: production
+    type: Drill
+    size: 4
+    tier: 6
+    drillTime: 30
+    health: 1200
+    hasPower: true
+    hardnessDrillMultiplier: 60
+    consumes: {
+        power: 16.67
+    }
+    requirements: [
+        quantum-alloy/5
+        mythril/20
+    ]
+    research: {
+        parent: xorinal-quantum-crucible
+        requirements: [
+            quantum-alloy/40
+            mythril/120
+        ]
+    }
+}
